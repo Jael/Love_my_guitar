@@ -1,0 +1,9 @@
+<h1>Post index</h1>
+<div>
+<% @posts.each do |post| %>
+  <%= link_to post.title, post %><br />
+  <%= pluralize(post.comments.count, "comment") %>
+  <hr />
+<% end %>
+</div>
+<%= link_to "New post", new_post_path %>
