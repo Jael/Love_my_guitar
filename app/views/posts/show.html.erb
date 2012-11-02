@@ -1,10 +1,8 @@
 <h1><%= link_to @post.title, @post.url %></h1>
-  <%= pluralize(@post.comments.count, "comment") %>
-  <div>
-    <hr />
-    <h4>Comment:</h4>
-  <% @post.comments.each do |comment| %>
-    <%= comment.content %>
-  <% end %>
-  </div>
+<%= pluralize(@post.comments.count, "comment") %>
+<div>
+  <hr />
+  <h4>Comment:</h4>
+  <%= nested_comments @post.comments.arrange(order: :created_at) %>
+</div>
 <%= link_to "back to list", posts_path %>

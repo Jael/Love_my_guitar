@@ -1,7 +1,7 @@
 <h1>Post index</h1>
 <div>
 <% @posts.each do |post| %>
-  <%= link_to post.title, post %><br />
+  <h3><%= link_to post.title, post %></h3>
   <%= pluralize(post.comments.count, "comment") %>
   <hr />
 <% end %>

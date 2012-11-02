@@ -7,7 +7,7 @@ gem 'therubyracer'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-
+gem 'ancestry'
 
 # Gems used only for assets and not required
 # in production environments by default.

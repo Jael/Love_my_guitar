@@ -15,3 +15,11 @@
 @import "bootstrap";
 body { padding-top: 60px; }
 @import "bootstrap-responsive";
+.nested_messages{
+  margin-left: 30px;
+  background-color: #E6E6FA;
+  padding-left: 30px;
+}
+.nested_messages .nested_messages{
+  margin-left: 0;
+}
