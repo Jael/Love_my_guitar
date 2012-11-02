@@ -3,6 +3,12 @@
 <div>
   <hr />
   <h4>Comment:</h4>
+   <div>
+     <%= form_for [@post,Comment.new] do |f| %>
+       <%= f.text_area :content, rows: 3, placeholder: "input the comment here!" %><br />
+       <%= f.submit %>
+     <% end %>
+   </div>
   <%= nested_comments @post.comments.arrange(order: :created_at) %>
 </div>
 <%= link_to "back to list", posts_path %>
