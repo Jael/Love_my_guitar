@@ -1,8 +1,31 @@
 <h1>Post index</h1>
 <div>
-<% @posts.each do |post| %>
-  <h3><%= link_to post.title, post %></h3>
-  <%= pluralize(post.comments.count, "comment") %>
+  <% @posts.each do |post| %>
+    <h3><%= link_to post.title, post %></h3>
+  <p>
+  submited <%= time_ago_in_words post.created_at %> ago | 
+  <%= pluralize(post.comments.count, "comment") %> |
+  <span data-toggle="collapse" data-target="#demo<%= post.id %>"><%= link_to "share", "#" %></span>
+  <div id="demo<%= post.id %>" class="collapse">  
+    <%= form_tag shares_path(post_id: post) do %>
+      <div>
+      <%= label_tag :email, "send this link to" %>
+      <%= email_field_tag :email %>
+    </div>
+    <div>
+      <%= label_tag :name, "Your name" %>
+      <%= text_field_tag :name %>
+    </div>
+    <div>
+      <%= label_tag :message %>
+      <%= text_area_tag :message %>
+    </div>
+    <div>
+      <%= submit_tag "Share" %>
+    </div>
+  <% end %>
+  </div>
+  </p>
   <hr />
 <% end %>
 </div>
