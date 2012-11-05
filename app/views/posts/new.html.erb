@@ -1,16 +1,53 @@
 <h1>Your new post</h1>
-<div>
-<%= form_for @post do |f| %>
-  <div>
-    <%= f.label :title  %>
-    <%= f.text_field :title %>
+<ul class="nav nav-tabs" id="myTab">
+  <li class="active"><a href="#link">Link</a></li>
+  <li><a href="#text">Text</a></li>
+</ul>
+ 
+<div class="tab-content">
+  <div class="tab-pane active" id="link">
+    <%= form_for @post do |f| %>
+      <div>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+      </div>
+      <div>
+        <%= f.label :url %>
+        <%= f.url_field :url %>
+      </div>
+      <div>
+
+        <%= select( "post", "type_id", Type.all.collect{|p| [p.name, p.id]}) %>
+      </div>
+      <div>
+        <%= f.submit %>
+      </div>
+    <% end %>
   </div>
-  <div>
-    <%= f.label :url %>
-    <%= f.url_field :url %>
+  <div class="tab-pane" id="text">
+  <%= form_for @post do |f| %>
+      <div>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+      </div>
+      <div>
+        <%= f.label :text %>
+        <%= f.url_field :text %>
+      </div>
+      <div>
+
+        <%= select( "post", "type_id", Type.all.collect{|p| [p.name, p.id]}) %>
+      </div>
+      <div>
+        <%= f.submit %>
+      </div>
+    <% end %>
+
   </div>
-  <div>
-    <%= f.submit %>
-  </div>
-<% end %>
 </div>
+<script type="text/javascript" charset="utf-8">
+$('#myTab a').click(function (e) {
+  e.preventDefault();
+  $(this).tab('show');
+})
+</script>

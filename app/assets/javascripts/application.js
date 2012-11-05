@@ -14,3 +14,10 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .
+ //$(function () {
+ //$('#myTab a:last').tab('show');
+ //})
+     $('a[data-toggle="tab"]').on('shown', function (e) {
+         e.target // activated tab
+         e.relatedTarget // previous tab
+         })

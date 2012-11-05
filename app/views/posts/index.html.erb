@@ -2,6 +2,9 @@
 <div>
   <% @posts.each do |post| %>
     <h3><%= link_to post.title, post %></h3>
+    <% if post.type %>
+    <p class="muted">type:<%= post.type.name %></p>
+    <% end %>
   <p>
   submited <%= time_ago_in_words post.created_at %> ago | 
   <%= pluralize(post.comments.count, "comment") %> |
