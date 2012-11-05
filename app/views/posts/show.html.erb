@@ -1,14 +1,26 @@
-<h1><%= link_to @post.title, @post.url %></h1>
+<% if @post.url %>
+  <h1><%= link_to @post.title, @post.url %></h1>
+<% else %>
+  <h1><%= link_to @post.title, "#" %></h1>
+<ul class="thumbnails">
+  <li class="span4">
+  <div class="thumbnail">
+    <img src="http://placehold.it/300x200" alt="">
+    <p><%= @post.text %></p>
+  </div>
+  </li>
+</ul>
+<% end %>
 <%= pluralize(@post.comments.count, "comment") %>
 <div>
   <hr />
   <h4>Comment:</h4>
-   <div>
-     <%= form_for [@post,Comment.new] do |f| %>
-       <%= f.text_area :content, rows: 3, placeholder: "input the comment here!" %><br />
-       <%= f.submit %>
-     <% end %>
-   </div>
-   <%= nested_comments @post.comments.arrange(order: :created_at) %>
+  <div>
+    <%= form_for [@post,Comment.new] do |f| %>
+      <%= f.text_area :content, rows: 3, placeholder: "input the comment here!" %><br />
+    <%= f.submit %>
+  <% end %>
+  </div>
+  <%= nested_comments @post.comments.arrange(order: :created_at) %>
 </div>
 <%= link_to "back to list", posts_path %>

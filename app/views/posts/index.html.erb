@@ -2,12 +2,12 @@
 <div>
   <% @posts.each do |post| %>
     <h3><%= link_to post.title, post %></h3>
-    <% if post.type %>
-    <p class="muted">type:<%= post.type.name %></p>
-    <% end %>
+  <% if post.type %>
+    <span class="label"><%= post.type.name %></span>
+  <% end %>
   <p>
-  submited <%= time_ago_in_words post.created_at %> ago | 
-  <%= pluralize(post.comments.count, "comment") %> |
+  <span class="muted"> submited <%= time_ago_in_words post.created_at %> ago </span>| 
+  <%= link_to pluralize(post.comments.count, "comment"), post%> |
   <span data-toggle="collapse" data-target="#demo<%= post.id %>"><%= link_to "share", "#" %></span>
   <div id="demo<%= post.id %>" class="collapse">  
     <%= form_tag shares_path(post_id: post) do %>
