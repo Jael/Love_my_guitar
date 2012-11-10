@@ -6,20 +6,20 @@
  
 <div class="tab-content">
   <div class="tab-pane active" id="link">
-    <%= form_for @post do |f| %>
+    <%= form_tag posts_path do  %>
       <div>
-      <%= f.label :title %>
-      <%= f.text_field :title %>
+      <%= label_tag :title %>
+      <%= text_field_tag :title %>
       </div>
       <div>
-        <%= f.label :url %>
-        <%= f.url_field :url %>
+        <%= label_tag :url %>
+        <%= url_field_tag :url %>
       </div>
       <div>
         <%= select( "post", "type_id", Type.all.collect{|p| [p.name, p.id]}, prompt: "Select the type") %>
       </div>
       <div>
-        <%= f.submit %>
+        <%= submit_tag "submit" %>
       </div>
     <% end %>
   </div>

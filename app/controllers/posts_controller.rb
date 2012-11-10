@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+ before_filter :authorize, only: [:vote, :new]
   def index
     @posts = Post.order(:created_at).reverse
   end
@@ -12,7 +13,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(params[:post])
+    @post = Post.new(title: params[:title], url: params[:url])
     if @post.save
       redirect_to @post, notice: "Successfully create the post"
     else
