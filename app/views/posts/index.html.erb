@@ -1,9 +1,20 @@
 <h1>Post index</h1>
 <div>
   <% @posts.each do |post| %>
-    <h3><%= link_to post.title, post %></h3>
+    <h3>
+    <%= link_to post.title, post %>
+  </h3>
   <% if post.type %>
     <span class="label"><%= post.type.name %></span>
+<% end %>
+  <% if !current_user.voted_for?(post)  %>
+    <a href=<%= vote_post_path(post, type: "up")%> > <i class="icon-arrow-up"></i></a>
+    <%= post.reputation_for(:votes).to_i %>
+    <a href=<%= vote_post_path(post, type: "down")%>><i class="icon-arrow-down"></i></a>
+  <% else %>
+    <span class="badge">
+    <a  rel="tooltip" title="voted"><%= post.reputation_for(:votes).to_i %></a>
+    </span>
   <% end %>
   <p>
   <span class="muted"> submited <%= time_ago_in_words post.created_at %> ago </span>| 

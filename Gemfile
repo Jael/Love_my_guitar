@@ -8,7 +8,8 @@ gem 'therubyracer'
 
 gem 'sqlite3'
 gem 'ancestry'
-
+gem 'activerecord-reputation-system', require: 'reputation_system'
+gem 'simple_form'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -24,7 +25,7 @@ end
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+ gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
