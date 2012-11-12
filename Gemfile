@@ -11,9 +11,6 @@ gem 'gravatar_image_tag'
 group :development do
   gem 'sqlite3'
 end
-group :production do
-  gem 'pg'
-end
 gem 'ancestry'
 gem 'activerecord-reputation-system', require: 'reputation_system'
 gem 'simple_form'
