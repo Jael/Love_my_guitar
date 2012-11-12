@@ -17,7 +17,6 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to @post, notice: "Successfully create the post"
     else
-      flash.now.alert = "Please input the title"
       render :new
     end
   end

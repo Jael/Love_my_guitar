@@ -5,13 +5,6 @@ class Post < ActiveRecord::Base
   belongs_to :type
   belongs_to :user
   has_reputation :votes, source: :user, aggregated_by: :sum
-  before_create :validates_url_or_text
   
 
-  def validates_url_or_text
-    if !url.nil? || !text.nil?
-      flash.now.alert = "Please input the url or text"
-      render :show
-    end
-  end
 end
