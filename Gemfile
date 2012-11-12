@@ -8,8 +8,12 @@ gem 'thin'
 gem 'gravatar_image_tag'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-gem 'sqlite3'
+group :development do
+  gem 'sqlite3'
+end
+group :production do
+  gem 'pg'
+end
 gem 'ancestry'
 gem 'activerecord-reputation-system', require: 'reputation_system'
 gem 'simple_form'
