@@ -1,5 +1,5 @@
 <% if @post.url %>
-  <h1><%= link_to @post.title, @post.url %></h1>
+  <h1><%= link_to @post.title, display_url_link(@post)%></h1>
 <% else %>
   <h1><%= link_to @post.title, "#" %></h1>
 <ul class="thumbnails">

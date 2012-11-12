@@ -13,7 +13,7 @@
       </div>
       <div>
         <%= label_tag :url %>
-        <%= url_field_tag :url %>
+        <%= text_field_tag :url %>
       </div>
       <div>
         <%= select( "post", "type_id", Type.all.collect{|p| [p.name, p.id]}, prompt: "Select the type") %>

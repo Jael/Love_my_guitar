@@ -1,12 +1,15 @@
-    <%= simple_form_for @user, html: {class: 'form-horizontal'} do |f| %>
-    <div class="control-group info">
+ <%= simple_form_for @user, html: {class: 'form-horizontal'} do |f| %>
+    <fieldset>
+      <legend>Sign up</legend>
     <%= f.input :name %>
     <%= f.input :email %>
     <%= f.input :password %>
-    <%= f.input :password_confirmation %><br />
+    <%= f.input :password_confirmation %>
+    <div class="form-actions">
     <%= f.button :submit  %>
     </div>
-   <% end %>
+    </fieldset>
+ <% end %>
 
 
 

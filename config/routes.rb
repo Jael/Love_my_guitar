@@ -8,6 +8,12 @@ CourseProject::Application.routes.draw do
   root to: "main#index"
   resources :posts do
     resources :comments
-    member {get :vote}
+    member do
+      get :vote
+    end
+    collection do
+      get :user_post
+    end
   end
+
 end

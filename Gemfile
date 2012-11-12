@@ -3,6 +3,9 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.3'
 gem 'bootstrap-sass'
 gem 'therubyracer'
+gem 'pry'
+gem 'thin'
+gem 'gravatar_image_tag'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
