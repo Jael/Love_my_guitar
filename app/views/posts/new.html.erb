@@ -1,7 +1,6 @@
 <h1>Your new post</h1>
 <ul class="nav nav-tabs" id="myTab">
   <li class="active"><a href="#link">Link</a></li>
-  <li><a href="#text">Text</a></li>
 </ul>
 
 <div class="tab-content">
@@ -28,30 +27,7 @@
     </div>
   <% end %>
   </div>
-  <div class="tab-pane" id="text">
-    <%= form_for @post do |f| %>
-      <% if @post.errors.any?   %>
-      <div class="alert alert-error">
-      <%= @post.errors.full_messages.join("<br/>").html_safe %>
-    </div>
-  <% end %>
-    <div>
-      <%= f.label :title %>
-      <%= f.text_field :title %>
-    </div>
-    <div>
-      <%= f.label :text %>
-      <%= f.text_area :text, rows: 4 %>
-    </div>
-    <div>
-      <%= select( "post", "type_id", Type.all.collect{|p| [p.name, p.id]}, prompt: "Select the type") %>
-    </div>
-    <div>
-      <%= f.submit %>
-    </div>
-  <% end %>
   </div>
-</div>
 <script type="text/javascript" charset="utf-8">
 $('#myTab a').click(function (e) {
   e.preventDefault();
