@@ -5,8 +5,8 @@
   </h4>
   <p>
   <small>
-    <% if post.type %>
-    <span class="label"><%= post.type.name %></span>
+    <% if post.tag_list%>
+    <span class="label"><%= link_to post.tag_list, tag_path(post.tag_list)%></span>
 <% end %>
   <% if current_user && !current_user.voted_for?(post)  %>
     <a href=<%= vote_post_path(post, type: "up")%> > <i class="icon-arrow-up"></i></a>

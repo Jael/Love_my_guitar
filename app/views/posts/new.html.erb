@@ -20,7 +20,8 @@
       <%= f.text_field :url %>
     </div>
     <div>
-      <%= select( "post", "type_id", Type.all.collect{|p| [p.name, p.id]}, prompt: "Select the type") %>
+      <%= f.label :tag_list, "Tag" %>
+      <%= f.text_field :tag_list %>
     </div>
     <div>
       <%= f.submit  %>

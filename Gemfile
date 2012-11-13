@@ -6,6 +6,7 @@ gem 'pry'
 gem 'thin'
 gem 'therubyracer'
 gem 'gravatar_image_tag'
+gem 'acts-as-taggable-on'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 group :development do

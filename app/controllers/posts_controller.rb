@@ -1,7 +1,11 @@
 class PostsController < ApplicationController
- before_filter :authorize, only: [:vote, :new]
+  before_filter :authorize, only: [:vote, :new]
   def index
-    @posts = Post.order(:created_at).reverse
+    if params[:tag]
+      @posts = Post.tagged_with(params[:tag])
+    else
+      @posts = Post.order(:created_at).reverse
+    end
   end
 
   def show
