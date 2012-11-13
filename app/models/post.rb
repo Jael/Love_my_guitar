@@ -7,5 +7,12 @@ class Post < ActiveRecord::Base
   belongs_to :user
   has_reputation :votes, source: :user, aggregated_by: :sum
   acts_as_taggable
+  before_create :check_tag
+
+  def check_tag
+    if tag_list.empty?
+      self.tag_list = "aww"
+    end
+  end
   
 end

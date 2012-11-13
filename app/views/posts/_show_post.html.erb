@@ -5,7 +5,7 @@
   </h4>
   <p>
   <small>
-    <% if post.tag_list%>
+    <% if !post.tag_list.nil?%>
     <span class="label"><%= link_to post.tag_list, tag_path(post.tag_list)%></span>
 <% end %>
   <% if current_user && !current_user.voted_for?(post)  %>
