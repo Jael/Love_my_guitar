@@ -1,3 +1,12 @@
+<div class="alert">
+<ul class="nav nav-pills">
+  <li>
+  <a href="#">最新</a>
+  </li>
+  <li><a href="#">热门</a></li>
+  <li><a href="#">得分</a></li>
+</ul>
+</div>
 <div>
   <% @posts.each do |post| %>
     <h4>
@@ -6,21 +15,15 @@
   <p>
   <small>
     <% if !post.tag_list.empty?%>
-    <span class="label"><%= link_to post.tag_list, tag_path(post.tag_list)%></span>
-<% end %>
-  <% if current_user && !current_user.voted_for?(post)  %>
+      <span class="label"><%= link_to post.tag_list, tag_path(post.tag_list)%></span>
+    <% end %>
     <a href=<%= vote_post_path(post, type: "up")%> > <i class="icon-arrow-up"></i></a>
-    <%= post.reputation_for(:votes).to_i %>
-    <a href=<%= vote_post_path(post, type: "down")%>><i class="icon-arrow-down"></i></a>
-  <% elsif !current_user%>
-    <a href=<%= vote_post_path(post, type: "up")%> > <i class="icon-arrow-up"></i></a>
-    <%= post.reputation_for(:votes).to_i %>
-    <a href=<%= vote_post_path(post, type: "down")%>><i class="icon-arrow-down"></i></a>
+    <% if current_user && current_user.voted_for?(post) %>
+      <%= post.reputation_for(:votes).to_i %>
     <% else %>
-    <span class="badge">
-    <%= post.reputation_for(:votes).to_i %>
-    </span>
-  <% end %>
+      <span class="muted"><%= post.reputation_for(:votes).to_i %></span>
+    <% end %>
+    <a href=<%= vote_post_path(post, type: "down")%>><i class="icon-arrow-down"></i></a>
   </small>
   </p>
   <p>
