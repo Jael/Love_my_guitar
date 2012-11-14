@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   def index
     if params[:tag]
       @posts = Post.tagged_with(params[:tag])
-    else
+    else 
       @posts = Post.order(:created_at).reverse
     end
   end
@@ -33,8 +33,8 @@ class PostsController < ApplicationController
   end
 
   def user_post
-    current_user = User.find(params[:user_id])
-    @posts = current_user.posts.all
+    @user = User.find(params[:user_id])
+    @posts = @user.posts.all
   end
 
 end

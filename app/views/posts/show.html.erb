@@ -1,3 +1,4 @@
+<% content_for(:title){"#{@post.title}"} %>
 <% if @post.url %>
   <h1><%= link_to @post.title, display_url_link(@post)%></h1>
 <% else %>
