@@ -8,7 +8,7 @@ class PostsController < ApplicationController
     elsif params[:latest] 
       @posts = Post.order(:created_at).reverse
     elsif params[:hot]
-      @posts = Post.all.sort_by{ |post| post.comments.count}.reverse
+      @posts = Post.all.sort_by{ |post| post.comments.count}
     else params[:score]
       @posts = Post.all.sort_by{ |post| post.reputation_for(:votes).to_i}.reverse 
     end
