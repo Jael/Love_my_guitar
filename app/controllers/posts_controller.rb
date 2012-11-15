@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_filter :authorize, only: [:vote, :new]
+  
   def index
     if params[:tag]
       @posts = Post.tagged_with(params[:tag])

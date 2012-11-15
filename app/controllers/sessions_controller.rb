@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  
   def create
     user = User.find_by_email(params[:email])
     if user && user.authenticate(params[:password])
@@ -18,4 +19,5 @@ class SessionsController < ApplicationController
     cookies.delete(:auth_token)
     redirect_to root_path, notice: "Successfully log out." 
   end
+
 end

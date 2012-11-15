@@ -1,5 +1,9 @@
-class CreateTypes < ActiveRecord::Migration
-  def change
+class DropType < ActiveRecord::Migration
+  def up
+    drop_table :types
+  end
+
+  def down
     create_table :types do |t|
       t.string :name
 

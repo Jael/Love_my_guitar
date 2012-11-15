@@ -5,9 +5,9 @@ class Post < ActiveRecord::Base
   has_many :comments
   belongs_to :type
   belongs_to :user
+  before_create :check_tag
   has_reputation :votes, source: :user, aggregated_by: :sum
   acts_as_taggable
-  before_create :check_tag
 
   def check_tag
     if tag_list.empty?

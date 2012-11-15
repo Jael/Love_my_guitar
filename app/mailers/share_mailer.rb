@@ -9,4 +9,5 @@ class ShareMailer < ActionMailer::Base
     @message = message
     mail to: email, subject: "There is the sharing from Love_my_guitar website"
   end
+
 end

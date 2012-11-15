@@ -1,17 +1,24 @@
 <br />
 <div><%= comment.content %></div>
 <br />
+
+
 <div>
   <span class="muted"><%= time_ago_in_words comment.created_at %> ago.</span>  • 
   <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#demo<%= comment.id %>">reply</button>
+
+
   <div id="demo<%= comment.id %>" class="collapse"> 
-    <%= form_for [@post, Comment.new(parent_id: comment)] do |f| %>
-      <%= f.hidden_field :parent_id %>
-    <div>
-      <%= f.text_area :content, rows: 3 %>
-    </div>
+  <%= form_for [@post, Comment.new(parent_id: comment)] do |f| %>
+ 
+    <%= f.hidden_field :parent_id %>
+
+    <div><%= f.text_area :content, rows: 3 %></div>
+
     <div><%= f.submit %></div>
+
   <% end %>
   </div>
+
   <hr />
 </div>

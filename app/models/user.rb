@@ -1,14 +1,14 @@
 require 'email_format_validator.rb'
 class User < ActiveRecord::Base
   attr_accessible :email, :name, :password, :password_confirmation, :auth_token
-  has_secure_password
   validates :password, presence: true, length: 6..20, on: :create
-  validates_presence_of :name
   validates :email, presence: true, uniqueness: true, email_format: true 
+  validates_presence_of :name
+  has_many :evaluations, class_name: "ReputationSystem::Evaluation", as: :source
   has_many :posts
   before_create { generate_token(:auth_token)}
   has_reputation :votes, source: {reputation: :votes, of: :posts}, aggregated_by: :sum
-  has_many :evaluations, class_name: "ReputationSystem::Evaluation", as: :source
+  has_secure_password
 
   def generate_token(column)
     begin
@@ -19,4 +19,5 @@ class User < ActiveRecord::Base
   def voted_for?(post)
     evaluations.where(target_type: post.class, target_id: post.id).present?
   end
+  
 end

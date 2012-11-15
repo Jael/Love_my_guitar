@@ -7,14 +7,11 @@ CourseProject::Application.routes.draw do
   resources :sessions
   resources :users
   root to: "main#index"
+
   resources :posts do
     resources :comments
-    member do
-      get :vote
-    end
-    collection do
-      get :user_post
-    end
+    member{get :vote}
+    collection{get :user_post}
   end
 
 end

@@ -3,51 +3,66 @@
   <li><a href="#">Hot</a></li>
   <li><a href="#">Score</a></li>
 </ul>
+
 <div>
   <% @posts.each do |post| %>
-    <h4>
-    <%= link_to post.title, post %>
-  </h4>
+   
+    <h4><%= link_to post.title, post %></h4>
+  
   <p>
   <small>
+
     <% if !post.tag_list.empty?%>
       <span class="label"><%= link_to post.tag_list, tag_path(post.tag_list)%></span>
     <% end %>
+
     <a href=<%= vote_post_path(post, type: "up")%> > <i class="icon-arrow-up"></i></a>
+    
     <% if current_user && current_user.voted_for?(post) %>
       <%= post.reputation_for(:votes).to_i %>
     <% else %>
       <span class="muted"><%= post.reputation_for(:votes).to_i %></span>
     <% end %>
+
     <a href=<%= vote_post_path(post, type: "down")%>><i class="icon-arrow-down"></i></a>
+ 
   </small>
   </p>
+
   <p>
+
   <small>
   <span class="muted"> submited <%= time_ago_in_words post.created_at %> ago by <%= link_to post.user.name, user_post_posts_path(user_id: post.user) %></span>| 
   <%= link_to pluralize(post.comments.count, "comment"), post%> |
   <span data-toggle="collapse" data-target="#demo<%= post.id %>"><%= link_to "share", "#" %></span>
   </small>
+
   <div id="demo<%= post.id %>" class="collapse">  
     <%= form_tag shares_path(post_id: post) do %>
-      <div>
+
+    <div>
       <%= label_tag :email, "send this link to" %>
       <%= email_field_tag :email %>
     </div>
+
     <div>
       <%= label_tag :name, "Your name" %>
       <%= text_field_tag :name %>
     </div>
+
     <div>
       <%= label_tag :message %>
       <%= text_area_tag :message %>
     </div>
+
     <div>
       <%= submit_tag "Share" %>
     </div>
-  <% end %>
+
+    <% end %>
   </div>
   </p>
+
   <hr />
-<% end %>
+  <% end %>
 </div>
