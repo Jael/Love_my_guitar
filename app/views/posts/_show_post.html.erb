@@ -1,7 +1,7 @@
 <ul class="alert nav nav-pills">
-  <li> <a href="#">Latest</a> </li>
-  <li><a href="#">Hot</a></li>
-  <li><a href="#">Score</a></li>
+  <li><%= link_to "Latest", posts_path(latest: 1) %> </li>
+  <li><%= link_to "Hot", posts_path(hot: 2) %></li>
+  <li><%= link_to "Score", posts_path(score: 3) %></li>
 </ul>
 
 <div>

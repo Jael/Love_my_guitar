@@ -4,7 +4,7 @@
 
 
 <div>
-  <span class="muted"><%= time_ago_in_words comment.created_at %> ago.</span>  • 
+  <span class="muted"><%= time_ago_in_words comment.created_at %> ago. by <%= link_to comment.post.user.name, user_post_posts_path(user_id: comment.post.user) %></span>  • 
   <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#demo<%= comment.id %>">reply</button>
 
 
