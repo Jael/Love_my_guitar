@@ -2,21 +2,20 @@ class PostsController < ApplicationController
   before_filter :authorize, only: [:vote, :new]
   
   def index
-    
     if params[:tag]
       @posts = Post.tagged_with(params[:tag])
-    elsif params[:latest] 
+    end
+    
+    if params[:latest] 
       @posts = Post.order(:created_at).reverse
     elsif params[:hot]
-      @posts = Post.all.sort_by{ |post| post.comments.count}
-    else params[:score]
+      @posts = Post.all.sort_by{ |post| post.comments.count}.reverse
+    elsif params[:score]
       @posts = Post.all.sort_by{ |post| post.reputation_for(:votes).to_i}.reverse 
+    else
+      @posts = Post .all
     end
-
-    if params[:q]
-      @search = Post.search(params[:q])
-      @post = @search.result
-    end
+   
   end
 
   def show

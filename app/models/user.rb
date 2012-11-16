@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   validates_presence_of :name
   has_many :evaluations, class_name: "ReputationSystem::Evaluation", as: :source
   has_many :posts
+  has_many :comments
   before_create { generate_token(:auth_token)}
   has_reputation :votes, source: {reputation: :votes, of: :posts}, aggregated_by: :sum
   has_secure_password

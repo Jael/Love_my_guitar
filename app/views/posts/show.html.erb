@@ -1,21 +1,7 @@
 <% content_for(:title){"#{@post.title}"} %>
 
 
-<% if @post.url %>
-  <h1><%= link_to @post.title, display_url_link(@post)%></h1>
-<% else %>
-  <h1><%= link_to @post.title, "#" %></h1>
-<ul class="thumbnails">
-  <li class="span4">
-  <div class="thumbnail">
-    <img src="http://placehold.it/300x200" alt="">
-    <p><%= @post.text %></p>
-  </div>
-  </li>
-</ul>
-<% end %>
-
-
+<h1><%= link_to @post.title, display_url_link(@post)%></h1>
 
 <%= pluralize(@post.comments.count, "comment") %>
 <div>
@@ -24,7 +10,8 @@
   <h4>Comment:</h4>
 
   <div>
-    <%= form_for [@post,Comment.new] do |f| %>
+    <%= form_for [@post, Comment.new(user_id: current_user.id)] do |f| %>
+      <%= f.hidden_field :user_id %>
       <%= f.text_area :content, rows: 3, placeholder: "input the comment here!" %><br />
       <%= f.submit %>
     <% end %>

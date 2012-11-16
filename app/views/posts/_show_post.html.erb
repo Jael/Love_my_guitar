@@ -21,14 +21,13 @@
     <% if current_user && current_user.voted_for?(post) %>
       <%= post.reputation_for(:votes).to_i %>
     <% else %>
-      <span class="muted"><%= post.reputation_for(:votes).to_i %></span>
+      <span class="muited"><%= post.reputation_for(:votes).to_i %></span>
     <% end %>
 
     <a href=<%= vote_post_path(post, type: "down")%>><i class="icon-arrow-down"></i></a>
  
   </small>
   </p>
-
   <p>
 
   <small>
