@@ -7,7 +7,7 @@ class DestroyTextFromPosts < ActiveRecord::Migration
 
   def down
     add_column :posts, :text, :string
-    add_column :posts, :tag, :string
+    #add_column :posts, :tag, :string
     add_column :posts, :type_id, :integer
   end
 end
