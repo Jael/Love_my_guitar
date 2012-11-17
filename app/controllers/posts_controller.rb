@@ -48,7 +48,6 @@ class PostsController < ApplicationController
 
   def user_post
     @user = User.find(params[:user_id])
-   # @posts = @user.posts.page(params{:page})
     @posts = Post.page(params[:page]).where("user_id = ?", params[:user_id])
   end
 

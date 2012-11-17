@@ -9,8 +9,7 @@
 
 
   <div id="demo<%= comment.id %>" class="collapse"> 
-  <%= form_for [@post, Comment.new(parent_id: comment, user_id: current_user.id)] do |f| %>
-      <%= f.hidden_field :user_id %>
+    <%= form_for [@post, Comment.new(parent_id: comment )] do |f| %>
 
     <%= f.hidden_field :parent_id %>
 
