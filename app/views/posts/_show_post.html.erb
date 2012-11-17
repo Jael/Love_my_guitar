@@ -29,7 +29,7 @@
   </small>
   </p>
   <p>
-j
+
   <small>
   <span class="muted"> submited <%= time_ago_in_words post.created_at %> ago by <%= link_to post.user.name, user_post_posts_path(user_id: post.user) %></span>| 
   <%= link_to pluralize(post.comments.count, "comment"), post%> |
