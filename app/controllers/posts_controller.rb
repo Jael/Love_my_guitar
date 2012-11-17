@@ -3,23 +3,27 @@ class PostsController < ApplicationController
   
   def index
     if params[:tag]
-      @posts = Post.tagged_with(params[:tag])
+      @posts = Post.page(params[:page]).tagged_with(params[:tag])
     end
     
     if params[:latest] 
-      @posts = Post.order(:created_at).reverse
+      @posts = Post.page(params[:page]).order(:created_at).reverse
     elsif params[:hot]
-      @posts = Post.all.sort_by{ |post| post.comments.count}.reverse
+      @posts = Post.page(params[:page]).sort_by{ |post| post.comments.count}.reverse
     elsif params[:score]
-      @posts = Post.all.sort_by{ |post| post.reputation_for(:votes).to_i}.reverse 
+      @posts = Post.page(params[:page]).sort_by{ |post| post.reputation_for(:votes).to_i}.reverse 
     else
-      @posts = Post .all
+      @posts = Post.page(params[:page])
     end
    
   end
 
   def show
     @post = Post.find(params[:id])
+    @comment = Comment.new
+    if current_user
+      @comment.user_id = current_user.id
+    end
   end
 
   def new
@@ -44,7 +48,8 @@ class PostsController < ApplicationController
 
   def user_post
     @user = User.find(params[:user_id])
-    @posts = @user.posts.all
+   # @posts = @user.posts.page(params{:page})
+    @posts = Post.page(params[:page]).where("user_id = ?", params[:user_id])
   end
 
 end
