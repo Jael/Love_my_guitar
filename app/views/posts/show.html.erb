@@ -10,9 +10,14 @@
   <h4>Comment:</h4>
 
   <div>
-    <%= form_for [@post, Comment.new(user_id: current_user.id)] do |f| %>
-      <%= f.hidden_field :user_id %>
+    <%= form_for [@post, Comment.new] do |f| %>
+      
+      <% if current_user  %>
+        <%= f.hidden_field :user_id => current_user %>
+      <% end %>
+
       <%= f.text_area :content, rows: 3, placeholder: "input the comment here!" %><br />
+
       <%= f.submit %>
     <% end %>
   </div>
