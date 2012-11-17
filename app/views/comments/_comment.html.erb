@@ -4,8 +4,8 @@
 
 
 <div>
-  <span class="muted"><%= time_ago_in_words comment.created_at %> ago. by <%= link_to comment.user.name, user_post_posts_path(user_id: comment.user) %></span>  • 
-  <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#demo<%= comment.id %>">reply</button>
+  <span class="muted"><%= time_ago_in_words comment.created_at %> ago. by <%= link_to comment.user.name, user_post_posts_path(user_id: comment.user) %></span>   
+  <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#demo<%= comment.id %>"><i class="icon-edit"></i>reply</button>
 
 
   <div id="demo<%= comment.id %>" class="collapse"> 

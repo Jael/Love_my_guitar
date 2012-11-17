@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   end
 
   def voted_for?(post)
-    evaluations.where(target_type: post.class, target_id: post.id).present?
+    evaluations.where(target_type: post.class, target_id: post).present?
   end
   
 end

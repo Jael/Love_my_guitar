@@ -2,20 +2,20 @@ class PostsController < ApplicationController
   before_filter :authorize, only: [:vote, :new]
   
   def index
+    @search = Post.search(params[:q])
     if params[:tag]
-      @posts = Post.page(params[:page]).tagged_with(params[:tag])
-    end
-    
-    if params[:latest] 
-      @posts = Post.page(params[:page]).order(:created_at).reverse
+      @posts = Post.tagged_with(params[:tag])
+    elsif params[:q]
+      @posts = @search.result
+    elsif params[:latest] 
+      @posts = Post.order(:created_at).reverse
     elsif params[:hot]
-      @posts = Post.page(params[:page]).sort_by{ |post| post.comments.count}.reverse
+      @posts = Post.all.sort_by{ |post| post.comments.count}.reverse
     elsif params[:score]
-      @posts = Post.page(params[:page]).sort_by{ |post| post.reputation_for(:votes).to_i}.reverse 
+      @posts = Post.all.sort_by{ |post| post.reputation_for(:votes).to_i}.reverse
     else
-      @posts = Post.page(params[:page])
+      @posts = Post.all
     end
-   
   end
 
   def show
@@ -39,6 +39,16 @@ class PostsController < ApplicationController
     end
   end
 
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to :back, notice: "Successfully destroy the post!"
+  end
+
   def vote
     value = params[:type] == "up" ? 1 : -1
     @post = Post.find(params[:id])
@@ -47,8 +57,12 @@ class PostsController < ApplicationController
   end
 
   def user_post
+    @search = Post.search(params[:q])
     @user = User.find(params[:user_id])
-    @posts = Post.page(params[:page]).where("user_id = ?", params[:user_id])
+    @posts = Post.where("user_id = ?", params[:user_id])
+    if params[:q]
+      @posts = @search.result
+    end
   end
 
 end
