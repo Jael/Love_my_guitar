@@ -3,7 +3,7 @@ class ShareMailer < ActionMailer::Base
 
   def share_email(post, email, name, message)
     @post = post
-    @url = post_url(@post, host: 'localhost:3000')
+    @url = post_url(@post, host: 'lovemyguitar.heroku.com')
     @name = name
     @email = email
     @message = message

@@ -6,6 +6,7 @@ CourseProject::Application.routes.draw do
   resources :shares 
   resources :sessions
   resources :users
+  resources :password_resets
   root to: "main#index"
 
   resources :posts do

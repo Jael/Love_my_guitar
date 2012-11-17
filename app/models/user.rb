@@ -20,5 +20,12 @@ class User < ActiveRecord::Base
   def voted_for?(post)
     evaluations.where(target_type: post.class, target_id: post).present?
   end
+
+  def send_password_reset
+    generate_token(:password_reset_token)
+    self.password_reset_sent_at = Time.zone.now
+    save!
+    UserMailer.password_reset(self).deliver 
+  end
   
 end
